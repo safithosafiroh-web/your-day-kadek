@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday, Khanza</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-ivory: #f2ebc7;
+            --accent-gold: #C59B51;
+            --accent-gold-dark: #A47B36;
+            --text-dark: #2B231D;
+            --text-sub: #63564A;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: linear-gradient(180deg, #FCFBF7 0%, #F5EFE6 40%, #EFE5D8 75%, #FCFBF7 100%);
+            color: var(--text-dark);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .ambient-glow {
+            position: fixed;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.18) 0%, rgba(252, 251, 247, 0) 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+            animation: floatGlow 12s infinite alternate ease-in-out;
+        }
+        .glow-1 { top: -150px; left: -150px; }
+        .glow-2 { bottom: -150px; right: -150px; }
+
+        @keyframes floatGlow {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(60px, 60px) scale(1.15); }
+        }
+
+        /* Floating Audio Control */
+        .audio-container {
+            position: fixed;
+            top: 25px;
+            right: 25px;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 8px 20px;
+            border-radius: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border: 1px solid rgba(197, 155, 81, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .audio-btn {
+            background: var(--accent-gold);
+            color: #FFF;
+            border: none;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            transition: transform 0.2s ease, background 0.2s ease;
+        }
+
+        .audio-btn:hover {
+            transform: scale(1.1);
+            background: var(--accent-gold-dark);
+        }
+
+        .audio-text {
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .hero-section {
+            min-height: 100vh;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-tag-hero {
+            font-size: 0.85rem;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            color: var(--accent-gold-dark);
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .hero-title {
+            font-family: 'Alex Brush', cursive;
+            font-size: 5.8rem;
+            color: var(--text-dark);
+            line-height: 1.1;
+            margin-bottom: 25px;
+            font-weight: normal;
+        }
+
+        .hero-desc {
+            font-size: 1.1rem;
+            line-height: 2;
+            color: var(--text-sub);
+            font-weight: 400;
+            max-width: 580px;
+            margin: 0 auto;
+        }
+
+        .section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 120px 24px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-tag {
+            font-size: 0.8rem;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: var(--accent-gold-dark);
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .section-title {
+            font-family: 'Alex Brush', cursive;
+            font-size: 4.8rem;
+            color: var(--text-dark);
+            margin-bottom: 70px;
+            font-weight: normal;
+        }
+
+        .gallery-container {
+            display: flex;
+            flex-direction: column;
+            gap: 100px;
+            max-width: 900px;
+            width: 100%;
+        }
+
+        .gallery-item {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+            width: 100%;
+        }
+
+        .gallery-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .photo-wrapper {
+            width: 340px;
+            height: 420px;
+            flex-shrink: 0;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 20px 45px rgba(43, 35, 29, 0.12);
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+        }
+
+        .photo-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.7s ease;
+        }
+
+        .gallery-item:hover .photo-wrapper {
+            transform: translateY(-8px);
+            box-shadow: 0 30px 60px rgba(197, 155, 81, 0.2);
+        }
+
+        .gallery-item:hover .photo-wrapper img {
+            transform: scale(1.06);
+        }
+
+        .card-content {
+            flex: 1;
+        }
+
+        .card-heading {
+            font-size: 1.6rem;
+            color: var(--text-dark);
+            margin-bottom: 16px;
+            font-weight: 600;
+        }
+
+        .card-text {
+            font-size: 1.05rem;
+            line-height: 1.9;
+            color: var(--text-sub);
+            font-weight: 400;
+        }
+
+        .wishes-container {
+            max-width: 750px;
+            width: 100%;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .wishes-text {
+            font-size: 1.15rem;
+            line-height: 2.2;
+            color: var(--text-dark);
+            margin-bottom: 40px;
+            font-weight: 400;
+        }
+
+        .signature {
+            font-family: 'Alex Brush', cursive;
+            font-size: 4rem;
+            color: var(--accent-gold-dark);
+        }
+
+        @media (max-width: 768px) {
+            .hero-title { font-size: 4rem; }
+            .section-title { font-size: 3.8rem; }
+            .gallery-item, .gallery-item:nth-child(even) {
+                flex-direction: column;
+                gap: 30px;
+                text-align: center;
+            }
+            .photo-wrapper {
+                width: 100%;
+                height: 350px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="ambient-glow glow-1"></div>
+    <div class="ambient-glow glow-2"></div>
+
+    <!-- Floating Audio Control -->
+    <div class="audio-container">
+        <button class="audio-btn" id="playBtn" onclick="toggleAudio()">▶</button>
+        <span class="audio-text" id="audioStatus">Play Music</span>
+    </div>
+
+    <audio id="bgMusic" loop preload="auto">
+        <source src="Bazzi, Camila Cabello - Beautiful (Lyrics) - 7clouds.mp3" type="audio/mpeg">
+    </audio>
+
+    <section class="hero-section">
+        <p class="section-tag-hero" data-aos="fade-down" data-aos-duration="1000">Special Day</p>
+        <h1 class="hero-title" data-aos="fade-up" data-aos-duration="1200">Happy Birthday,<br>Khanza</h1>
+        <p class="hero-desc" data-aos="fade-up" data-aos-duration="1400">
+            Wishing you a wonderful birthday filled with good health, happiness, and peace of mind. May this new year bring great things your way.
+        </p>
+    </section>
+
+    <section class="section">
+        <p class="section-tag" data-aos="fade-up">Memories</p>
+        <h2 class="section-title" data-aos="fade-up">A Quick Look Back</h2>
+
+        <div class="gallery-container">
+            <div class="gallery-item" data-aos="fade-up" data-aos-duration="1000">
+                <div class="photo-wrapper">
+                    <img src="IMG_6789.jpg" alt="Khanza 1">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-heading">Time Flies</h3>
+                    <p class="card-text">Thanks for being a great friend all this time. Wishing you nothing but continuous success in everything you do.</p>
+                </div>
+            </div>
+
+            <div class="gallery-item" data-aos="fade-up" data-aos-duration="1000">
+                <div class="photo-wrapper">
+                    <img src="DSCF0062.JPG" alt="Khanza 2">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-heading">Shared Moments</h3>
+                    <p class="card-text">Every experience and lesson along the way shapes who we are. Here’s to moving forward with confidence.</p>
+                </div>
+            </div>
+
+            <div class="gallery-item" data-aos="fade-up" data-aos-duration="1000">
+                <div class="photo-wrapper">
+                    <img src="DSCF0067.JPG" alt="Khanza 3">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-heading">New Beginnings</h3>
+                    <p class="card-text">May this year open doors to new opportunities and make achieving your goals a little smoother.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="wishes-container" data-aos="zoom-in" data-aos-duration="1000">
+            <p class="section-tag">Best Wishes</p>
+            <h2 class="section-title" style="color: var(--accent-gold-dark); margin-bottom: 25px;">For Khanza</h2>
+            <div class="wishes-text">
+                Happy Birthday, Khanza.
+                <br><br>
+                I hope this year brings you genuine happiness, good health, and clarity in everything you pursue. May all your plans and hard work pay off in due time.
+                <br><br>
+                Keep going, and best of luck for the future!
+            </div>
+            <div class="signature">From: fithoh</div>
+        </div>
+    </section>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ once: true, duration: 800 });
+
+        const audio = document.getElementById('bgMusic');
+        const playBtn = document.getElementById('playBtn');
+        const audioStatus = document.getElementById('audioStatus');
+
+        function toggleAudio() {
+            if (audio.paused) {
+                audio.play().then(() => {
+                    playBtn.innerHTML = '❚❚';
+                    audioStatus.innerText = 'Playing ♪';
+                });
+            } else {
+                audio.pause();
+                playBtn.innerHTML = '▶';
+                audioStatus.innerText = 'Play Music';
+            }
+        }
+    </script>
+</body>
+</html>
